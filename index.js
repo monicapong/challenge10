@@ -143,3 +143,36 @@ const employeePrompts = [
         }
     }
 ];
+
+const writeToFile = (data) => {
+    fs.writeFile('./dist/index.html', data, (err) => {
+    err ? console.error(err) : console.log('HTML of team profile successfully created!')
+    });
+};
+
+const team = []
+
+async function init() {
+    await inquirer.prompt(managerPrompts)
+    .then(data => {
+        team.push(new Manager(data.name, data.id, data.email, data.officeNumber));
+    })
+    addEmployee();
+}
+
+init();
+
+async function addEmployee() {
+    await inquirer.prompt(employeePrompts)
+    .then(data => {
+        if (data.menu === 'Add an engineer') {
+            team.push(new Engineer(data.name, data.id, data.email, data.github));
+            addEmployee();
+        } else if (data.menu === 'Add an intern') {
+            team.push(new Intern(data.name, data.id, data.email, data.school));
+            addEmployee();
+        } else {
+            return writeToFile(generateHTML(team));
+        }
+    });
+};
