@@ -1,4 +1,3 @@
-
 # Module 10 Object-Oriented Programming: Team Profile Generator
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue)
@@ -21,10 +20,13 @@ This application allows the user to enter team member information when prompted 
 ## Installation
 
 - Inquirer
+
 ```
 npm i inquirer@8.2.4
 ```
+
 - Jest
+
 ```
 npm i jest
 ```
@@ -32,16 +34,18 @@ npm i jest
 ## Usage
 
 1. Start the application in CLI
+
 ```
 node index.js
 ```
+
 2. Enter the manager's information by answering each prompt.
 3. To add an engineer or intern, choose the respective choice at the menu and answer each prompt.
 4. When you're finish adding all team members, choose 'Finish building my team'
 5. A confirmation that an HTML file was created succesfully will appear in the console log.
 6. View the Team Profile HTML under the dist folder
 
-![]()
+![Team Profile Generator](./assets/teamProfileGenerator.gif)
 
 ## Credits
 
@@ -49,13 +53,14 @@ node index.js
 
 ## License
 
-This application is distributed under the MIT License. Please review the [MIT License](https://choosealicense.com/licenses/MIT) for more information. 
+This application is distributed under the MIT License. Please review the [MIT License](https://choosealicense.com/licenses/MIT) for more information.
 
 ## Tests
 
 ```
 npm run tests
 ```
+![Tests](./assets/tests.jpg)
 
 ## Questions
 
