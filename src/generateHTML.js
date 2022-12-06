@@ -1,3 +1,4 @@
+// Returns html for a manager's profile
 const renderManagerProfile = (manager) => {
     return `
                                 <tr>
@@ -26,6 +27,7 @@ const renderManagerProfile = (manager) => {
     `;
 };
 
+// Returns html for an engineer's profile
 const renderEngineerProfile = (engineer) => {
     return `
                                 <tr>
@@ -56,6 +58,7 @@ const renderEngineerProfile = (engineer) => {
     `;
 };
 
+// Returns html for an intern's profile
 const renderInternProfile = (intern) => {
     return `
                                 <tr>
@@ -88,21 +91,31 @@ const renderInternProfile = (intern) => {
     `;
 };
 
+// Returns HTML for team profile 
 const renderTeamProfile = (data) => {
-    let teamProfile =[];
+    // Array for HTML of team member profiles 
+    let teamHTML =[];
 
     for (let i = 0; i < data.length; i++) {
+        // If the role is manager,
         if (data[i].getRole() === 'Manager') {
-            teamProfile.push(renderManagerProfile(data[i]));
+            // push manager profile html to teamHTML array
+            teamHTML.push(renderManagerProfile(data[i]));
+        // If the role is engineer,
         } else if (data[i].getRole() === 'Engineer') {
-            teamProfile.push(renderEngineerProfile(data[i]));
+            // push engineer profile html to teamHTML array
+            teamHTML.push(renderEngineerProfile(data[i]));
+        // If the role is intern,
         } else {
-            teamProfile.push(renderInternProfile(data[i]));
+            // push intern profile html to teamHTML array
+            teamHTML.push(renderInternProfile(data[i]));
         };
     };
-    return teamProfile.join('');
+    //return teamHTML array
+    return teamHTML.join('');
 };
 
+// Return an HTML for the team profile
 const generateHTML = (data) => {
     return `<!DOCTYPE html>
 <html lang="en">

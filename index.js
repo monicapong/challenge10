@@ -9,8 +9,8 @@ const Intern = require('./lib/intern');
 
 // Generate HTML code
 const generateHTML = require('./src/generateHTML');
-const { of } = require('rxjs');
 
+// Manager prompts
 const managerPrompts = [
     {
         type: 'input',
@@ -66,6 +66,7 @@ const managerPrompts = [
     }
 ];
 
+// Employee prompts
 const employeePrompts = [
     {
         type: 'list',
@@ -144,34 +145,52 @@ const employeePrompts = [
     }
 ];
 
+// Create an index.html file in the dist folder
 const writeToFile = (data) => {
     fs.writeFile('./dist/index.html', data, (err) => {
     err ? console.error(err) : console.log('HTML of team profile successfully created!')
     });
 };
 
+// Array for team member profiles
 const team = []
 
+// Prompt user with managerPrompts and push manager profile object to team array
 async function init() {
+    // Prompt user with managerPrompts
     await inquirer.prompt(managerPrompts)
     .then(data => {
+        // Push manager object to team array
         team.push(new Manager(data.name, data.id, data.email, data.officeNumber));
     })
+    // Calls addEmployee to prompt user with employeePrompts and push employee profile objects to team array
     addEmployee();
 }
 
+// Calls init to start inquirer prompts and push manager profile object to team array
 init();
 
+// Prompt user with employeePrompts and push employee profile objects to team array
 async function addEmployee() {
+    // Prompt user with employeePrompts
     await inquirer.prompt(employeePrompts)
     .then(data => {
+        // If 'Add an engineer' is chosen from the menu,
         if (data.menu === 'Add an engineer') {
+            // Push engineer object to team array
             team.push(new Engineer(data.name, data.id, data.email, data.github));
+            // Calls addEmployee to prompt user with employeePrompts and push employee profile objects to team array
             addEmployee();
+        // If 'Add an intern' is chosen from the menu,
         } else if (data.menu === 'Add an intern') {
+            // Push intern object to team array
             team.push(new Intern(data.name, data.id, data.email, data.school));
+            // Calls addEmployee to prompt user with employeePrompts and push employee profile objects to team array
             addEmployee();
+        // If 'Finish building my team' is chosen from the menu,
         } else {
+            // Calls writeToFile to create an index.html file in the dist folder
+            // Calls generateHTML to create an HTML of the team profile using the data from the team array
             return writeToFile(generateHTML(team));
         }
     });
