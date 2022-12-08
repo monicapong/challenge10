@@ -148,7 +148,7 @@ const employeePrompts = [
 // Create an index.html file in the dist folder
 const writeToFile = (data) => {
     fs.writeFile('./dist/index.html', data, (err) => {
-        err ? console.error(err) : console.log('HTML of team profile successfully created!');
+    err ? console.error(err) : console.log('HTML of team profile successfully created!')
     });
 };
 
