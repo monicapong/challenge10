@@ -38,7 +38,7 @@ describe("Engineer", () => {
   });
 
   describe("getRole", () => {
-    it("should return Engineer", () => {
+    it("should return Manager", () => {
       const str = 'Engineer'
       const result = new Engineer().getRole();
 
